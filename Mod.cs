@@ -38,12 +38,22 @@ namespace FewerGameLogs
         }
 
         public void OnDisabled() => HarmonyPatcher.TryUnpatch(HarmonyId);
-        public void OnSettingsUI(UIHelper helper)
+        public void OnSettingsUI(UIHelperBase helper)
         {
             ModSettings.Load();
-            helper.AddCheckbox("Still Log game errors", ModSettings.LogError, (isChecked) =>
+            helper.AddCheckbox("Still Log game errors", ModSettings.LogError, isChecked =>
             {
                 ModSettings.LogError = isChecked;
+                ModSettings.Save();
+            });
+            helper.AddTextfield("Black List", ModSettings.BlackList, value =>
+            {
+                ModSettings.BlackList = value;
+                ModSettings.Save();
+            });
+            helper.AddTextfield("White List", ModSettings.WhiteList, value =>
+            {
+                ModSettings.WhiteList = value;
                 ModSettings.Save();
             });
         }

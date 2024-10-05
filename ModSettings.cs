@@ -18,5 +18,14 @@ namespace FewerGameLogs
         public bool XMLLogError { get => LogError; set => LogError = value; }
         [XmlIgnore]
         internal static bool LogError = false;
+        [XmlElement("BlackList")]
+        public string XMLBlackList { get => BlackList; set => BlackList = value; }
+        [XmlIgnore]
+        internal static string BlackList = "\"UPDATE LOOP\"";
+
+        [XmlElement("WhiteList")]
+        public string XMLWhiteList { get => WhiteList; set => WhiteList = value; }
+        [XmlIgnore]
+        internal static string WhiteList = "";
     }
 }
