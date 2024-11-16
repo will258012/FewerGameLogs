@@ -1,19 +1,19 @@
 ﻿using ColossalFramework.IO;
-using FewerGameLogs.Utils;
 using System.IO;
 using System.Xml.Serialization;
+using WillCommons;
 
 namespace FewerGameLogs
 {
     [XmlRoot("FewerGameLogs")]
-    public sealed class ModSettings
+    public sealed class ModSettings : XMLFileBase
     {
         [XmlIgnore]
         private static readonly string SettingsFileName = Path.Combine(DataLocation.localApplicationData, "FewerGameLogs.xml");
 
-        internal static void Load() => XMLFileUtils.Load<ModSettings>(SettingsFileName);
+        internal static void Load() => Load<ModSettings>(SettingsFileName);
 
-        internal static void Save() => XMLFileUtils.Save<ModSettings>(SettingsFileName);
+        internal static void Save() => Save<ModSettings>(SettingsFileName);
         [XmlElement("LogError")]
         public bool XMLLogError { get => LogError; set => LogError = value; }
         [XmlIgnore]

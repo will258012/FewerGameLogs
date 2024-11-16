@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FewerGameLogs", "FewerGameLogs.csproj", "{959EEF1E-486E-4EBF-BE85-9EB8EB8CAB07}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "WillCommonsPatchingShared", "..\WillCommons\WillCommonsPatchingShared.shproj", "{B6425656-CEF8-46D5-B4DC-F8B36BAC4CAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,5 +23,9 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C10204A3-9560-4468-BA24-0DF6E223B04F}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\WillCommons\WillCommonsPatchingShared.projitems*{959eef1e-486e-4ebf-be85-9eb8eb8cab07}*SharedItemsImports = 5
+		..\WillCommons\WillCommonsPatchingShared.projitems*{b6425656-cef8-46d5-b4dc-f8b36bac4caf}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal

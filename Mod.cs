@@ -1,43 +1,15 @@
-﻿using FewerGameLogs.Utils;
-using ICities;
-using System.Reflection;
+﻿using ICities;
+using System;
+using System.Linq;
+using WillCommons;
 
 namespace FewerGameLogs
 {
-    public class Mod : IUserMod, ILoadingExtension
+    public class Mod : PatcherModBase
     {
-        public string Name => "Fewer Game Logs v" + ModVersion;
-        public string Description => "Fewer outputting logs of the game itself";
-        private const string HarmonyId = "Will258012.FewerGameLogs";
-
-        private string ModVersion
-        {
-            get
-            {
-                var assemblyVersion = ModAssembly.GetName().Version;
-                return $"{assemblyVersion.Major}.{assemblyVersion.Minor}.{assemblyVersion.Build}";
-            }
-        }
-        public void OnEnabled() => HarmonyPatcher.PatchOnReady(ModAssembly, HarmonyId);
-
-        public void OnCreated(ILoading loading)
-        {
-
-        }
-        public void OnLevelLoaded(LoadMode mode)
-        {
-
-        }
-
-        public void OnLevelUnloading()
-        {
-
-        }
-        public void OnReleased()
-        {
-        }
-
-        public void OnDisabled() => HarmonyPatcher.TryUnpatch(HarmonyId);
+        public override string BaseName => "Fewer Game Logs";
+        public override string Description => "Fewer outputting logs of the game itself";
+        public override string HarmonyID => "Will258012.FewerGameLogs";
         public void OnSettingsUI(UIHelperBase helper)
         {
             ModSettings.Load();
@@ -57,7 +29,14 @@ namespace FewerGameLogs
                 ModSettings.Save();
             });
         }
-        private Assembly ModAssembly => Assembly.GetExecutingAssembly();
-
+        public static string[] BlackList => ModSettings.BlackList
+           .Split(new[] { "\",\"" }, StringSplitOptions.None)
+           .Select(suffix => suffix.Trim('"'))
+           .ToArray();
+        public static string[] WhiteList => ModSettings.WhiteList
+            .Split(new[] { "\",\"" }, StringSplitOptions.None)
+            .Select(suffix => suffix.Trim('"'))
+            .ToArray();
     }
 }
+

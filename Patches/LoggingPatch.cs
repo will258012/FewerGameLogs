@@ -1,5 +1,4 @@
 ﻿using ColossalFramework;
-using FewerGameLogs.Utils;
 using HarmonyLib;
 using System;
 using System.Linq;
@@ -14,7 +13,7 @@ namespace FewerGameLogs.Patches
         {
             if (el == ErrorLevel.Error && ModSettings.LogError) return true;
             if (ModSettings.WhiteList.IsNullOrWhiteSpace()) return false;
-            return Log.WhiteList.Any(w => msg.Contains(w));
+            return Mod.WhiteList.Any(w => msg.Contains(w));
         }
     }
 
@@ -25,7 +24,7 @@ namespace FewerGameLogs.Patches
         {
             if (el == ErrorLevel.Error && ModSettings.LogError) return true;
             if (ModSettings.WhiteList.IsNullOrWhiteSpace()) return false;
-            return Log.WhiteList.Any(w => msg.Contains(w));
+            return Mod.WhiteList.Any(w => msg.Contains(w));
         }
     }
 
@@ -35,7 +34,7 @@ namespace FewerGameLogs.Patches
         public static bool Prefix(string message)
         {
             if (ModSettings.WhiteList.IsNullOrWhiteSpace()) return false;
-            return Log.WhiteList.Any(w => message.Contains(w));
+            return Mod.WhiteList.Any(w => message.Contains(w));
         }
     }
 
@@ -46,7 +45,7 @@ namespace FewerGameLogs.Patches
         {
             string msgStr = message?.ToString();
             if (string.IsNullOrEmpty(msgStr)) return false;
-            return !(!ModSettings.BlackList.IsNullOrWhiteSpace() && Log.BlackList.Any(b => msgStr.Contains(b)));
+            return !(!ModSettings.BlackList.IsNullOrWhiteSpace() && Mod.BlackList.Any(b => msgStr.Contains(b)));
         }
     }
 }
